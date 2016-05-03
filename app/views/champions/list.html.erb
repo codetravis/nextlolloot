@@ -1,2 +1,10 @@
-<h1>Champions#list</h1>
-<p>Find me in app/views/champions/list.html.erb</p>
+<h1>Champions</h1>
+<div>
+  <% @display_info.each do |champ| %>
+    <% if (@masteries[champ[1]["id"]] != nil) %>
+    <div class="champ_info">
+      <span>Name -- <%= champ[1]["name"] %> Earned Crate? <%= @masteries[champ[1]["id"]]["chestGranted"] %></span>
+    <div>
+    <% end %>
+  <% end %>
+</div>
