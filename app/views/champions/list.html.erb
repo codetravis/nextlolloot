@@ -1,6 +1,8 @@
 <h1>Champions</h1>
 <div>
-  <span> Name </span><span> Highest Grade </span>
+  <div class="background-img">
+    <img src="<%= @cdn_url %>/img/champion/splash/<%= @top_champion[1]["key"] %>_0.jpg">
+  </div>
   <% @display_info.each do |champ| %>
     <% if ( !champ[1]["masteries"]["chestGranted"]) %>
     <div class="champ_visual">

@@ -33,9 +33,11 @@ class ChampionsController < ApplicationController
     champions = JSON.parse(open(champion_uri).read)
     @display_info = champions["data"]
     @display_info.each {|name, champ| champ["masteries"] = @masteries[champ["id"]]}
-    @display_info = @display_info.reject {|name, champ| champ["masteries"] == nil}
+    @display_info = @display_info.reject {|name, champ| champ["masteries"] == nil || champ["masteries"]["chestGranted"]}
     @display_info.each {|name, champ| champ["masteries"]["highestGrade"] = "No Grade" unless(champ["masteries"]["highestGrade"] != nil)}
     @display_info.each {|name, champ| champ["masteries"]["gradeWeight"] = weights[champ["masteries"]["highestGrade"]] }
     @display_info = @display_info.sort_by{|name, champ| champ["masteries"]["gradeWeight"] }
+    @top_champion = @display_info[0]
+    puts @top_champion[1]
   end
 end
