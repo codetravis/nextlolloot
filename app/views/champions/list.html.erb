@@ -1,10 +1,16 @@
 <h1>Champions</h1>
 <div>
+  <span> Name </span><span> Highest Grade </span>
   <% @display_info.each do |champ| %>
-    <% if (@masteries[champ[1]["id"]] != nil) %>
+    <% if ( !champ[1]["masteries"]["chestGranted"]) %>
+    <div class="champ_visual">
+      <img src="<%= @cdn_url %>/<%= @version %>/img/champion/<%= champ[1]["key"] %>.png">
+    </div>
     <div class="champ_info">
-      <span>Name -- <%= champ[1]["name"] %> Earned Crate? <%= @masteries[champ[1]["id"]]["chestGranted"] %></span>
-    <div>
+      <span>
+        <%= champ[1]["name"] %> <%= champ[1]["masteries"]["highestGrade"] || "No Grade" %>
+      </span>
+    </div>
     <% end %>
   <% end %>
 </div>
