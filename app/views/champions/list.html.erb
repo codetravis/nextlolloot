@@ -1,17 +1,23 @@
-<h1>Champions</h1>
+<div class="background-img" style="background-image: url('<%= @cdn_url %>/img/champion/splash/<%= @top_champion[1]["key"] %>_0.jpg');">
+</div>
+</div>
 <div>
-  <div class="background-img">
-    <img src="<%= @cdn_url %>/img/champion/splash/<%= @top_champion[1]["key"] %>_0.jpg">
+  <div class="big-text">
+    <h1>You Are Most Likely to Earn Your Next Loot Crate Playing:</h1>
+    <h1> <%= @top_champion[1]["name"] %> - <%= @top_champion[1]["title"] %></h1>
   </div>
   <% @display_info.each do |champ| %>
     <% if ( !champ[1]["masteries"]["chestGranted"]) %>
-    <div class="champ_visual">
-      <img src="<%= @cdn_url %>/<%= @version %>/img/champion/<%= champ[1]["key"] %>.png">
-    </div>
-    <div class="champ_info">
-      <span>
-        <%= champ[1]["name"] %> <%= champ[1]["masteries"]["highestGrade"] || "No Grade" %>
-      </span>
+    <div class="champ-block">
+      <div class="champ-img">
+        <img src="<%= @cdn_url %>/<%= @version %>/img/champion/<%= champ[1]["key"] %>.png">
+      </div>
+      <div class="champ-info">
+        <p><%= champ[1]["name"] %></p>
+        <p>Highest Grade: <%= champ[1]["masteries"]["highestGrade"] %></p>
+        <p>Mastery Level: <%= champ[1]["masteries"]["championLevel"] %></p>
+        <p>Mastery Points: <%= champ[1]["masteries"]["championPoints"] %></p>
+      </div>
     </div>
     <% end %>
   <% end %>

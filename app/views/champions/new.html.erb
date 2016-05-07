@@ -1,9 +1,15 @@
-<h1>Enter Your Summoner Name</h1>
 
-<%= form_tag("/champions/list", method: "get") do -%>
-  <%= label_tag(:region, "Region") %>
-  <%= select_tag "region", options_for_select(["BR", "EUNE", "EUW", "JP", "KR", "LAN", "LAS", "NA", "OCE", "RU", "TR"], "NA") %>
-  <%= label_tag(:summonername, "Summoner Name:") %>
-  <%= text_field_tag(:summonername) %>
-  <%= submit_tag("Enter") %>
-<% end -%>
+<div class="background-img" style="background-image: url('/assets/chest-key.png');">
+</div>
+<div class="big-text-grey">
+  <h1>Which Champion Should You Play To Earn Your Next League HexTech (TM) Loot Crate?</h1>
+</div>
+<div class="login-form">
+  <%= form_tag("/champions/list", method: "get") do -%>
+    <%= label_tag(:region, "Region") %>
+    <%= select_tag "region", options_for_select(["BR", "EUNE", "EUW", "JP", "KR", "LAN", "LAS", "NA", "OCE", "RU", "TR"], "NA") %>
+    <%= label_tag(:summonername, "Summoner Name:") %>
+    <%= text_field_tag(:summonername) %>
+    <%= submit_tag("Enter") %>
+  <% end -%>
+</div>
