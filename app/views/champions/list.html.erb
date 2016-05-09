@@ -6,6 +6,11 @@
       <h1> <%= @top_champion[1]["name"] %> - <%= @top_champion[1]["title"] %></h1>
       <h3> Mastery Level: <%= @top_champion[1]["masteries"]["championLevel"] %> -- Highest Grade: <%= @top_champion[1]["masteries"]["highestGrade"] %> </h3>
     </div>
+    <div class="container">
+      <div class="page-header big-text-left">
+        <h4>Other Champions To Try</h4>
+      </div>
+    </div>
     <div class="row">
     <% @display_info.each do |champ| %>
       <% if ( !champ[1]["masteries"]["chestGranted"]) %>

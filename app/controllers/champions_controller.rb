@@ -15,12 +15,12 @@ class ChampionsController < ApplicationController
       redirect_to action: "new", message: "Please Enter a Summoner Name"
     else
       # /api/lol/{region}/v1.4/summoner/by-name/{summonerNames}
-      weights = {"S+" => 0,  "S" => 1,  "S-" => 2,
-                 "A+" => 3,  "A" => 4,  "A-" => 5,
-                 "B+" => 6,  "B" => 7,  "B-" => 8,
-                 "C+" => 9,  "C" => 10, "C-" => 11,
-                 "D+" => 12, "D" => 13, "D-" => 14,
-                 "F"  => 20, "No Grade" => 100}
+      weights = {"S+" => 100,  "S" => 99,  "S-" => 98,
+                 "A+" => 97,  "A" => 96,  "A-" => 95,
+                 "B+" => 94,  "B" => 93,  "B-" => 92,
+                 "C+" => 91,  "C" => 90, "C-" => 89,
+                 "D+" => 88, "D" => 87, "D-" => 86,
+                 "F"  => 85, "No Grade" => 0}
       api_key = Rails.application.secrets.rito_api_key
       @summonername = params[:summonername]
 
@@ -46,7 +46,7 @@ class ChampionsController < ApplicationController
         @display_info = @display_info.reject {|name, champ| champ["masteries"] == nil || champ["masteries"]["chestGranted"]}
         @display_info.each {|name, champ| champ["masteries"]["highestGrade"] = "No Grade" unless(champ["masteries"]["highestGrade"] != nil)}
         @display_info.each {|name, champ| champ["masteries"]["gradeWeight"] = weights[champ["masteries"]["highestGrade"]] }
-        @display_info = @display_info.sort_by{|name, champ| champ["masteries"]["gradeWeight"] }
+        @display_info = @display_info.sort_by{|name, champ| [champ["masteries"]["gradeWeight"], champ["masteries"]["championLevel"], champ["masteries"]["championPoints"] ]}.reverse
         @top_champion = @display_info.shift
         @display_info = @display_info.first(5)
       rescue OpenURI::HTTPError => e
